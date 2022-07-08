@@ -2,3 +2,9 @@
     /* display: flex; */
     justify-content: space-around;
 }
+
+.flex-box-container .flex-box-result{
+    font-size: 54px;
+    text-align: center;
+    color: red;
+}
