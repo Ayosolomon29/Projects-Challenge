@@ -10,3 +10,15 @@ const ageInDays = () => {
 function reset(){
     document.getElementById("flex-box-result").remove()
 }
+
+
+
+//cat Generator
+
+function generateCat(){
+    var catImage = document.createElement("img");
+    var catGroup = document.getElementById("flex-cat-gen");
+    catImage.src = "img/cat2";
+    catGroup.appendChild(catImage)
+}
+
