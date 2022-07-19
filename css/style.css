@@ -6,7 +6,7 @@
  
 
 /* cat Generator */
-.flex-box{
+.flex-box, .rps-box{
     display: flex;
     border: 1px solid blue;
     flex-wrap: wrap;
