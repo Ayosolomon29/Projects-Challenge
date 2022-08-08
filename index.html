@@ -52,7 +52,7 @@
 
 
   <!-- change all colors -->
-  <div class="container py-5">
+  <div class="container py-5" style="border: 1px solid black;">
     <h2 class="change-color">Challenge 4: Change Colors of all buttons</h2>
     <div class="flex-box-pick-color d-flex">
       <form action="" class="me-3">
@@ -71,6 +71,49 @@
     </div>
   </div>
     
+<!-- Blackjack -->
+<div class="container-5">
+  <h2>Challenge 5: Blackjack</h2>
+  <h3 class="py-2"><span id="black-jack-result">Let's play</span></h3>
+
+  <div class="flex-blackjack-row-1">
+    <div id="your-box">
+      <h2>You: <span id="your-blackjack-result">0</span></h2>
+    </div>
+
+    <div id="dealer-box">
+      <h2>Dealer: <span id="dealer-blackjack-result">0</span></h2>
+    </div>
+  </div>
+
+
+  <div class="flex-blackjack-row-2">
+    <div>
+      <button class="btn btn-primary me-2" id="blackjack-hit-button">Hit</button>
+      <button class="btn btn-warning me-2" id="blackjack-stand-button">Stand</button>
+      <button class="btn btn-danger" id="blackjack-deal-button">Deal</button>
+    </div>
+  </div>
+
+  <div class="flex-blackjack-row-3">
+    <table style="border: 1px solid black;">
+     <tr style="border: 1px solid black;">
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>Draws</th>
+     </tr>
+
+     <tr style="border: 1px solid black;">
+      <td><span id="wins">0</span></td>
+      <td><span id="losses">0</span></td>
+      <td><span id="draws">0</span></td>
+     </tr>
+    </table>
+
+  </div>
+
+
+</div>
     <script src="js/script.js"></script>
 </body>
 </html>
