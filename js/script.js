@@ -161,10 +161,42 @@ let blackjackGame = {
 const You = blackjackGame["you"]
 const Dealer = blackjackGame["dealer"];
 
-console.log(Dealer)
+const hitSound = new Audio("audio/jacksound/play-sound.mp3");
+
 
 document.querySelector("#blackjack-hit-button").addEventListener('click', blackjackHit);
 
 function blackjackHit(){
-    alert("Ouch! You just click me")
+    showCard(You)
+    // showCard(Dealer)
+}
+
+function showCard(activePlayer){
+    let cardImage = document.createElement("img");
+    cardImage.src = "img/jack/1.jpg";
+    document.querySelector(activePlayer.div).appendChild(cardImage);
+    hitSound.play();
+}
+
+// document.querySelector("#blackjack-stand-button").addEventListener("click", blackjackStand);
+// function blackjackStand(){
+//     let cardImage = document.createElement("img");
+//     cardImage.src = "img/jack/k.png";
+//     document.querySelector(Dealer["div"]).appendChild(cardImage)
+//     hitSound.play();
+// }
+
+document.querySelector("#blackjack-deal-button").addEventListener("click", blackjackDeal);
+
+function blackjackDeal(){
+    let yourImages =  document.querySelector("#your-box").querySelectorAll("img");
+    let dealerImages =  document.querySelector("#dealer-box").querySelectorAll("img");
+ 
+  for (i=0; i < yourImages.length; i++){
+    yourImages[i].remove()
+  }
+
+  for (i=0; i < dealerImages.length; i++){
+    dealerImages[i].remove()
+  }
 }
