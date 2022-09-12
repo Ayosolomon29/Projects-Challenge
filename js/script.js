@@ -155,7 +155,9 @@ function randomColors(){
 
 let blackjackGame = {
     "you": {"scoreSpan": "#your-blackjack-result", "div": "#your-box", "score": 0},
-    "dealer": {"scoreSpan": "#dealer-blackjack-result", "div": "#dealer-box", "score": 0}
+    "dealer": {"scoreSpan": "#dealer-blackjack-result", "div": "#dealer-box", "score": 0},
+    "cards": [ "2", "3", "4", "5", "6", "7", "8", "9", "10", "K", "J", "Q", "A"],
+    "cardMap": {"2": 2, "3": 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "10" : 10, "K" : 10, "J" : 10 , "Q" : 10, "A" : [1, 11]},
 };
 
 const You = blackjackGame["you"]
@@ -164,28 +166,47 @@ const Dealer = blackjackGame["dealer"];
 const hitSound = new Audio("audio/jacksound/play-sound.mp3");
 
 
+
+//Hit button activation
 document.querySelector("#blackjack-hit-button").addEventListener('click', blackjackHit);
 
 function blackjackHit(){
-    showCard(You)
     // showCard(Dealer)
+   let card = (randomCards())
+//    console.log (card)
+   showCard(card, You)
+    updateScore(card, You)
+    console.log(You["score"])
+    showScore(You)
 }
 
-function showCard(activePlayer){
-    let cardImage = document.createElement("img");
-    cardImage.src = "img/jack/1.jpg";
-    document.querySelector(activePlayer.div).appendChild(cardImage);
-    hitSound.play();
+
+//function that select the cards randomly
+function randomCards(){
+    let randomIndex = Math.floor(Math.random()* 13);
+    return blackjackGame["cards"][randomIndex]
+}
+
+//function that create image and where to show the image
+function showCard(card, activePlayer){
+    if (activePlayer["score"] <= 21){
+     let cardImage = document.createElement("img");
+        cardImage.src = `img/jack/${card}.png`;
+        document.querySelector(activePlayer.div).appendChild(cardImage);
+        hitSound.play();
+}
 }
 
 // document.querySelector("#blackjack-stand-button").addEventListener("click", blackjackStand);
 // function blackjackStand(){
 //     let cardImage = document.createElement("img");
-//     cardImage.src = "img/jack/k.png";
+//     cardImage.src = "img/jack/K.png";
 //     document.querySelector(Dealer["div"]).appendChild(cardImage)
 //     hitSound.play();
 // }
 
+
+//blackjack deal button remove the images
 document.querySelector("#blackjack-deal-button").addEventListener("click", blackjackDeal);
 
 function blackjackDeal(){
@@ -199,4 +220,27 @@ function blackjackDeal(){
   for (i=0; i < dealerImages.length; i++){
     dealerImages[i].remove()
   }
+}
+
+function updateScore(card, activePlayer){
+    if (card === "A") {
+    //if adding 11 keeps me below 21, add 11 otherwise, add 1 
+    if (activePlayer["score"] + blackjackGame["cardMap"][card][1] <= 21){
+        activePlayer["score"] += blackjackGame["cardMap"][card][1];
+    } else {
+        activePlayer["score"] += blackjackGame["cardMap"][card][0]
+    }
+    } else {
+        activePlayer["score"] += blackjackGame["cardMap"][card];
+    }
+}
+
+
+function showScore(activePlayer){
+    if (activePlayer["score"] > 21) {
+        document.querySelector(activePlayer["scoreSpan"]).textContent = "BUST!"
+        document.querySelector(activePlayer["scoreSpan"]).style.color = "red"
+    }else {
+    document.querySelector(activePlayer["scoreSpan"]).textContent = activePlayer["score"]
+}
 }
