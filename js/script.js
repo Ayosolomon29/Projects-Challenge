@@ -220,6 +220,14 @@ function blackjackDeal(){
   for (i=0; i < dealerImages.length; i++){
     dealerImages[i].remove()
   }
+
+  You["score"]= 0;
+  Dealer["score"] = 0;
+  document.querySelector("#your-blackjack-result").textContent = 0;
+  document.querySelector("#dealer-blackjack-result").textContent = 0;
+  document.querySelector("#your-blackjack-result").style.color = "White";
+  document.querySelector("#dealer-blackjack-result").style.color = "white";
+
 }
 
 function updateScore(card, activePlayer){
