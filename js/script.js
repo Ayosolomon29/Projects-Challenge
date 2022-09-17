@@ -215,9 +215,9 @@ function showCard(card, activePlayer){
 document.querySelector("#blackjack-deal-button").addEventListener("click", blackjackDeal);
 
 function blackjackDeal(){
-    blackjackGame["isStand"] === false;
-
    if (blackjackGame["turnOver"] === true) {
+
+    blackjackGame["isStand"] = false;
 
    
     let yourImages =  document.querySelector("#your-box").querySelectorAll("img");
@@ -293,6 +293,7 @@ async function dealerLogic(){
         blackjackGame["turnOver"] = true;
         let winner = computeWinner()
         showResult(winner)
+        console.log(blackjackGame["turnOver"])
     }
 // }
 
